@@ -10,7 +10,6 @@ public class UserService {
 		FileService fileService = new FileService();
 		User[] users = fileService.readMyFile();
 
-		User[] successfulLogin = null;
 		int attempts = 0;
 		while (attempts < 5) {
 			attempts++;
@@ -19,9 +18,10 @@ public class UserService {
 			String username = scan.next();
 			System.out.println("Enter your password: ");
 			String password = scan.next();
-			successfulLogin = validateUser(users, username, password);
 
-			if (successfulLogin != null && attempts <= 5) {
+			User[] successfulLogin = validateUser(users, username, password);
+
+			if (successfulLogin != null) {
 				break;
 			} else if (attempts < 5) {
 				System.out.println("Invalid login, please try again");

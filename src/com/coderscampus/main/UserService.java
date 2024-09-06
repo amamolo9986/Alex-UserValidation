@@ -10,10 +10,9 @@ public class UserService {
 		FileService fileService = new FileService();
 		User[] users = fileService.readMyFile();
 
-		int attempts = 0;
-		while (attempts < 5) {
-			attempts++;
-
+	
+			for (int i = 0; i < 5; i++) {
+				
 			System.out.println("Enter your username: ");
 			String username = scan.next();
 			System.out.println("Enter your password: ");
@@ -23,7 +22,7 @@ public class UserService {
 
 			if (successfulLogin != null) {
 				break;
-			} else if (attempts < 5) {
+			} else if (i < 5) {
 				System.out.println("Invalid login, please try again");
 			} else {
 				System.out.println("Too many failed login attempts, your account is locked.");
